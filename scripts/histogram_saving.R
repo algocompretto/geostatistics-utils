@@ -1,0 +1,6 @@
+setwd("..\\data_r\\simetrica225")
+dados <- read.csv("simetrica225.csv",sep=";",header=TRUE)
+setwd("..\\data_r\\tempo")
+pdf("Histograma.pdf",width=5,height=5)
+hist(dados$Zgauss)
+dev.off()

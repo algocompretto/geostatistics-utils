@@ -1,0 +1,7 @@
+setwd("..\\data_r\\simetrica225")
+dados <- read.csv("simetrica225.csv",sep=";",header=TRUE)
+setwd("data_r\\tempo")
+pdf("Histogram_density.pdf",width=5,height=5)
+densidade <- density(dados$Zgauss)
+plot(densidade)
+#dev.off()
