@@ -1,16 +1,17 @@
-#Yamamoto (2020, p. 47-49)
-setwd("C:\\geoEspacial\\DataR\\teste150")
+setwd("..\\data_r\\teste150")
 dados <- read.csv("teste150.csv",sep=";",header=TRUE)
 x <- dados$X; y <- dados$Y; z <- dados$Zgauss
 n <- length(z)
-# x, y e z s�o vetores de comprimento n.
+
+# x, y e z são vetores de comprimento n.
 par<- read.csv("parametros.csv", sep=";", header=TRUE);
 xmin <- par$Xmin; xmax <- par$Xmax
 ymin <- par$Ymin; ymax <- par$Ymax
 dx <- par$DX; dy <- par$DY
 mcel<-length(xmin)
 mcel
-#faz a verificacao dos pontosXparametros
+
+# faz a verificação dos pontos X parâmetros
 inX=TRUE; inY=TRUE
 for (i in 1:n){
   for (j in 1:mcel){
@@ -51,7 +52,7 @@ for (m in 1:mcel){
   for (i in 1:n) {soma<-soma+peso[i]*z[i]}
   media<-soma
   for (i in 1:n) {soma2<-soma2+(peso[i])*((z[i]-media)^2)}
-  soma2  # E a variancia para a media calculada
+  soma2  # Variância para a média calculada
   medias[m] <- media
 }
 
@@ -64,6 +65,6 @@ print(c(mediaOtima,dx[indice]))
 par(mar=c(5,5,2,2))
 plot(dx,medias,pch=16,cex=1.5,col="red",xlab="DX",ylab="MÉDIA",
 cex.lab=1.25,cex.main=1.25,main="Média ótima",cex.axis=1.0)
-lines(dx,medias,col="green",lwd=2)
-#dev.off()
+lines(dx, medias, col="green", lwd=2)
+dev.off()
 } else print("Pontos fora dos limites definidos no arquivo de parâmetros!")
